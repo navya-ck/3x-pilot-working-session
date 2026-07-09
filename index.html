@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3X Pilot Teams — Working Session Questionnaire</title>
+  <style>
+    :root {
+      --bg: #f4f5f7;
+      --card: #ffffff;
+      --ink: #1a1a2e;
+      --muted: #5c6270;
+      --accent: #4338ca;
+      --accent-soft: #eef0fb;
+      --border: #e2e4ea;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      padding: 32px 16px 80px;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; }
+    header.hero {
+      background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 28px 28px 24px;
+      margin-bottom: 24px;
+    }
+    header.hero h1 { margin: 0 0 6px; font-size: 1.5rem; letter-spacing: -0.01em; }
+    header.hero p { margin: 0; opacity: 0.9; font-size: 0.95rem; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      margin-bottom: 16px;
+    }
+    .q-num {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      padding: 3px 9px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    label.q { display: block; font-weight: 650; font-size: 1.02rem; margin-bottom: 4px; }
+    .hint { color: var(--muted); font-size: 0.86rem; margin: 0 0 12px; }
+    input[type="text"], textarea, select {
+      width: 100%;
+      font: inherit;
+      color: var(--ink);
+      padding: 11px 13px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #fdfdfe;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+    textarea { min-height: 96px; resize: vertical; }
+    .req { color: #d6336c; }
+    .actions { margin-top: 8px; }
+    button {
+      font: inherit;
+      font-weight: 650;
+      color: #fff;
+      background: var(--accent);
+      border: none;
+      border-radius: 9px;
+      padding: 13px 26px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.05s;
+    }
+    button:hover { background: #3730a3; }
+    button:active { transform: translateY(1px); }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
+    #status { margin-top: 14px; font-size: 0.92rem; min-height: 1.2em; }
+    #status.ok { color: #087f5b; }
+    #status.err { color: #c92a2a; }
+    .done {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .done h2 { color: var(--accent); }
+    footer { text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 28px; }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <h1>3X Pilot Teams — Working Session Questionnaire</h1>
+      <p>Pre-read for the CG A.PDLC working session (Assisted · Business Model · Consumer Platform / CK). Please answer for your pilot team ahead of the Friday session — your responses drive the gap/action list.</p>
+    </header>
+
+    <form id="questionnaire">
+      <div class="card">
+        <label class="q" for="team">Pilot team <span class="req">*</span></label>
+        <p class="hint">Which pilot team are you answering for?</p>
+        <select id="team" name="team" required>
+          <option value="" disabled selected>Select your team…</option>
+          <option>Full Service (Assisted)</option>
+          <option>Monetization (Business Model)</option>
+          <option>Credit Cards (Consumer Platform / CK)</option>
+          <option>Insurance (Consumer Platform / CK)</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="card">
+        <label class="q" for="name">Your name <span class="req">*</span></label>
+        <p class="hint">Who's filling this out?</p>
+        <input type="text" id="name" name="name" required autocomplete="name" />
+      </div>
+
+      <div class="card">
+        <span class="q-num">Q1 · ARTIFACT CHAIN</span>
+        <label class="q" for="q1">Walk us through the artifacts you've produced across the full PDLC so far.</label>
+        <p class="hint">Where does the canonical Insights → Brief → PRD → Architecture → Specs → Plans → Epics chain hold, and where does it break? Is it collaborative with cross-functional teams?</p>
+        <textarea id="q1" name="q1_artifact_chain"></textarea>
+      </div>
+
+      <div class="card">
+        <span class="q-num">Q2 · CONTEXT SHARING</span>
+        <label class="q" for="q2">What's your context-sharing strategy for passing artifacts from function to function (e.g., PM → PD)?</label>
+        <p class="hint">Is GitHub your system of record? Are artifacts versioned?</p>
+        <textarea id="q2" name="q2_context_sharing"></textarea>
+      </div>
+
+      <div class="card">
+        <span class="q-num">Q3 · SKILL INVENTORY</span>
+        <label class="q" for="q3">Can you provide an inventory of the foundational and team-specific cross-functional skills/tools each partner is using today?</label>
+        <p class="hint">Which skills are shared/reused across functions vs. built one-off? How do you avoid every function creating duplicate tools?</p>
+        <textarea id="q3" name="q3_skill_inventory"></textarea>
+      </div>
+
+      <div class="card">
+        <span class="q-num">Q4 · CAPABILITY PLUGIN DEPENDENCIES</span>
+        <label class="q" for="q4">What capability plugins does your pipeline depend on?</label>
+        <p class="hint">Can you share an inventory with status and repo agentic-readiness scores?</p>
+        <textarea id="q4" name="q4_capability_plugins"></textarea>
+      </div>
+
+      <div class="card">
+        <span class="q-num">Q5 · ENTERPRISE TOOL INTEGRATION</span>
+        <label class="q" for="q5">Which enterprise tools does your PDLC pipeline connect to and update?</label>
+        <p class="hint">DevPortal, JIRA, Dragonboat, ODL, Dev360, Figma, GitHub? Which are read-only vs. read-write?</p>
+        <textarea id="q5" name="q5_enterprise_tools"></textarea>
+      </div>
+
+      <div class="card">
+        <span class="q-num">Q6 · OBSERVABILITY</span>
+        <label class="q" for="q6">What metrics and dashboards give you visibility into the PDLC pipeline?</label>
+        <p class="hint">How do you measure cycle time, quality, and where work stalls?</p>
+        <textarea id="q6" name="q6_observability"></textarea>
+      </div>
+
+      <div class="card">
+        <span class="q-num">Q7 · PR-REVIEW PROCESS</span>
+        <label class="q" for="q7">Walk us through your PR-review process.</label>
+        <p class="hint">How is it automated, what checks run (system-engineer, testing, security), and how does it fit the broader PR-review agent direction?</p>
+        <textarea id="q7" name="q7_pr_review"></textarea>
+      </div>
+
+      <div class="card">
+        <span class="q-num">Q8 · MARKETPLACE</span>
+        <label class="q" for="q8">Which cross-functional partners have run marketplace skills and created their portion of the PDLC artifacts?</label>
+        <p class="hint">Note partners still missing.</p>
+        <textarea id="q8" name="q8_marketplace"></textarea>
+      </div>
+
+      <div class="card">
+        <span class="q-num">Q9 · FRICTION / PAIN POINTS</span>
+        <label class="q" for="q9">What friction / pain points are you seeing right now?</label>
+        <p class="hint">Be specific — these feed directly into the gap/action list.</p>
+        <textarea id="q9" name="q9_friction"></textarea>
+      </div>
+
+      <div class="card actions">
+        <button type="submit" id="submitBtn">Submit response</button>
+        <div id="status"></div>
+      </div>
+    </form>
+
+    <footer>
+      Responses are collected for the 3X A.PDLC working session. One submission per team member.
+    </footer>
+  </div>
+
+  <script>
+    // ── PASTE YOUR APPS SCRIPT WEB APP URL HERE (ends in /exec) ──
+    const ENDPOINT_URL = "REPLACE_WITH_APPS_SCRIPT_EXEC_URL";
+
+    const form = document.getElementById("questionnaire");
+    const statusEl = document.getElementById("status");
+    const btn = document.getElementById("submitBtn");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      if (ENDPOINT_URL.startsWith("REPLACE_")) {
+        statusEl.className = "err";
+        statusEl.textContent = "Form endpoint isn't configured yet. Add the Apps Script URL to index.html.";
+        return;
+      }
+
+      btn.disabled = true;
+      statusEl.className = "";
+      statusEl.textContent = "Submitting…";
+
+      const data = new FormData(form);
+
+      try {
+        await fetch(ENDPOINT_URL, {
+          method: "POST",
+          mode: "no-cors",          // Apps Script web apps don't return CORS headers
+          body: data
+        });
+        // no-cors gives an opaque response, so we optimistically show success
+        form.innerHTML =
+          '<div class="card done"><h2>✓ Thank you!</h2>' +
+          '<p>Your response has been recorded for the 3X working session.</p></div>';
+      } catch (err) {
+        statusEl.className = "err";
+        statusEl.textContent = "Something went wrong submitting. Please try again or contact Navya.";
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
