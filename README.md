@@ -1,33 +1,30 @@
 # 3X Pilot Teams — Working Session Questionnaire
 
-A static, GitHub Pages–hosted questionnaire for the CG A.PDLC working session
-(Assisted · Business Model · Consumer Platform / CK). Responses are written to a
-Google Sheet via a Google Apps Script web app.
+Questionnaire for the CG A.PDLC working session (Assisted · Business Model ·
+Consumer Platform / CK), collecting the 9 pilot-team questions into a Google Sheet.
 
-**Live form:** enabled via GitHub Pages (Settings → Pages).
 **Responses Sheet:** https://docs.google.com/spreadsheets/d/1Ppnm99OR2U9irgEcqZvNufEazx7tm9hHrf7NQ5UYPMk/edit
 
-## How it works
+## ✅ Use this: native Google Form (`CreateForm.gs`)
 
-```
-GitHub Pages (index.html)  ──POST──▶  Apps Script /exec  ──appendRow──▶  Google Sheet
-```
+Intuit/CK Workspace policy blocks fully-public Apps Script web apps, so the
+static-page approach below can't write to the Sheet. Use a native Google Form
+instead — it handles login/sharing cleanly and auto-writes to the Sheet.
 
-GitHub Pages only serves static files — it can't store submissions. The Apps Script
-web app is the free, no-server backend that catches each POST and appends a row.
+**Run once:**
+1. Go to https://script.google.com → **New project**.
+2. Paste the contents of [`CreateForm.gs`](./CreateForm.gs), Save.
+3. Select `createQuestionnaire` → **Run** → authorize (Intuit/CK account).
+4. **View → Logs** to get the form's edit URL, share URL, and Sheet link.
+5. Set the form's sharing to **"Anyone within Intuit"** and send the share URL
+   to the pilot teams.
 
-## One-time setup
+## ⚠️ Deprecated: static GitHub Pages form (`index.html` + `Code.gs`)
 
-1. Open the responses Sheet (link above) → **Extensions → Apps Script**.
-2. Paste the contents of [`Code.gs`](./Code.gs), Save.
-3. **Deploy → New deployment → Web app**
-   - Execute as: **Me**
-   - Who has access: **Anyone**
-4. Authorize, then copy the **Web app URL** (ends in `/exec`).
-5. In [`index.html`](./index.html), replace `REPLACE_WITH_APPS_SCRIPT_EXEC_URL`
-   with that URL, commit, and push.
-
-Done — share the Pages URL with the pilot teams.
+Kept for reference only. This POSTs from a GitHub Pages page to an Apps Script
+web app — but org policy forces the endpoint to require Intuit SSO, and the
+cross-origin `no-cors` POST silently fails (returns 401, row never lands).
+Do not use unless the org later allows public web-app deployment.
 
 ## The 9 questions
 1. Artifact chain
